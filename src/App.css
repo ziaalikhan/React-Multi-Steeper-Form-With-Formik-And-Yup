@@ -3,9 +3,9 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    width: 80%;
+    width: 43%;
     margin-top: 30px;
-    box-shadow: 0 0 10px gray;
+    box-shadow: 0 0 10px black;
     padding-top: 40px;
  
 }
@@ -33,3 +33,18 @@
 .end{
     text-align: center;
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    margin: 0% auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  td, th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+  }
+  

@@ -1,36 +1,53 @@
-import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import {TextField} from 'formik-material-ui'
-import * as Yup from 'yup';
-
+import React from "react";
+import { Formik, Field, Form } from "formik";
+import { TextField } from "formik-material-ui";
+import * as Yup from "yup";
 
 const FormTwo = ({ handleNext }) => {
+
+
+
   return (
-    <div className='forms'>
-    <Formik
-      initialValues={{lastName: '' }}
-      validationSchema={Yup.object({
-        lastName: Yup.string()
-          .max(20, 'Must be 20 characters or less')
-          .required('Required')
-      })}
-      onSubmit={(values) => {
-        setTimeout(() => {
-          console.log(JSON.stringify(values, null, 2));
-          // setSubmitting(false);
-          handleNext()
-        }, 400);
-      }}
-    >
-     <Form autoComplete='off'>
-        <Field fullWidth name="lastName" component={TextField} label='Last Name' />
-        <ErrorMessage name="lastName" />
+    <div className="forms">
+     
+      <Formik
+        initialValues={{ email: "" , profession: ""}}
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .max(20, "Must be 20 characters or less")
+            .required("Required"),
+          profession: Yup.string()
+            .max(20, "Must be 20 characters or less")
+            .required("Required"),
+        })}
+        onSubmit={(values) => {
+          console.log(values);
+          localStorage.setItem('email', values.email)
+          localStorage.setItem('profession', values.profession)
+          handleNext();
+        }}
+      >
+        <Form autoComplete="off">
+          <Field
+            fullWidth
+            name="email"
+            component={TextField}
+            label="Email"
+          />
+          <Field
+            fullWidth
+            name="profession"
+            component={TextField}
+            label="Profession"
+          />
 
-        <br />
+          <br />
 
-        <button className='btn' type="submit">Submit</button>
-      </Form>
-    </Formik>
+          <button className="btn" type="submit">
+            Submit
+          </button>
+        </Form>
+      </Formik>
     </div>
   );
 };

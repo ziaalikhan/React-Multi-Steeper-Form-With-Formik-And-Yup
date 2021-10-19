@@ -1,35 +1,56 @@
-import React from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import {TextField} from 'formik-material-ui';
-import * as Yup from 'yup';
-
+import React from "react";
+import { Formik, Field, Form} from "formik";
+import { TextField } from "formik-material-ui";
+import * as Yup from "yup";
 
 const FormThree = ({ handleNext }) => {
+
+
+
   return (
-    <div className='forms'>
-    <Formik
-      initialValues={{  email: '' }}
-      validationSchema={Yup.object({
-        email: Yup.string()
-          .email('Invalid email address')
-          .required('Required'),
-      })}
-      onSubmit={(values) => {
-        setTimeout(() => {
-          console.log(JSON.stringify(values, null, 2));
-          handleNext()
-        }, 400);
-      }}
-    >
-      <Form autoComplete='off'>
-        <Field fullWidth name="email" component={TextField} label='Enter Your Email' />
-        <ErrorMessage name="email" />
+    <div>
+    <div className="forms">
 
-        <br />
+      <Formik
+        initialValues={{ city: "" , bio: ""}}
+        validationSchema={Yup.object({
+          city: Yup.string()
+          .max(20, "Must be 20 characters or less")
+            .required("Required"),
+          bio: Yup.string()
+          .max(200, "Must be 200 characters or less")
+            .required("Required"),
+        })}
+        onSubmit={(values) => {
+          console.log(values);
+          localStorage.setItem('city', values.city)
+          localStorage.setItem('bio', values.bio)
+          handleNext();
+        }}
+      >
+        <Form autoComplete="off">
+          <Field
+            fullWidth
+            name="city"
+            component={TextField}
+            label="City"
+          />
+          <Field
+            fullWidth
+            name="bio"
+            component={TextField}
+            label="Bio"
+          />
 
-        <button className='btn' type="submit">Submit</button>
-      </Form>
-    </Formik>
+          <br />
+
+          <button className="btn" type="submit">
+            Submit
+          </button>
+        </Form>
+      </Formik>
+    </div>
+
     </div>
   );
 };
